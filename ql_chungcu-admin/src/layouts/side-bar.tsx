@@ -10,16 +10,8 @@ import {
     SidebarMenuSubItem, SidebarProvider, SidebarTrigger
 } from "../components/ui/sidebar.tsx";
 import {
-    Building,
-    Building2,
-    ChevronRight,
-    FileText,
-    Home,
-    LogOut,
-    Network,
-    Settings,
-    UserRoundCog,
-    Workflow
+    ChevronRight, LogOut, Network,
+    UserCog,
 } from "lucide-react";
 import {Link, useNavigate} from "react-router-dom";
 import {useContext, useState} from "react";
@@ -30,78 +22,26 @@ import {AuthContext} from "@/context/AuthContext.tsx";
 const items = [
     {
         id: 1,
-        title: "Trang chủ",
-        url: "/",
-        icon: Home,
-        child: []
-    },
-    {
-        id: 2,
         title: "Quản lý cơ cấu tổ chức",
         url: "/page/org",
         icon: Network,
         child: []
     },
     {
-        id: 3,
-        title: "Quản lý quy trình",
-        url: "/page/bsn",
-        icon: Workflow,
+        id: 2,
+        title: "Quản lý truy cập",
+        url: "/page/authori",
+        icon: UserCog,
         child: []
     },
 
     {
-        id: 8,
-        title: "Quản lý tòa nhà",
-        url: "/page/bd",
-        icon: Building2,
-        child: []
-    },
-
-    {
-        id: 4,
-        title: "Cư dân căn hộ",
-        url: "#",
-        icon: Building,
-        child: [
-            {
-                id: 5,
-                title: "Quản lý cư dân",
-                url: "/page/apres/res",
-                icon: UserRoundCog,
-                child: []
-            },
-            {
-                id: 6,
-                title: "Quản lý căn hộ",
-                url: "/page/apres/apt",
-                icon: Home,
-                child: []
-            }
-        ]
-    },
-    {
-        id: 10,
-        title: "Xử lý yêu cầu",
-        url: "/page/reply",
-        icon: FileText,
-        child: []
-    },
-    {
-        id: 7,
-        title: "Cài đặt",
-        url: "#",
-        icon: Settings,
-        child: []
-    },
-    {
-        id: 9,
+        id: 19999,
         title: "Đăng xuất",
         url: "#",
         icon: LogOut,
         child: []
     }
-
 ]
 
 export default function SidebarCus() {

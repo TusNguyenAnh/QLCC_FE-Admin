@@ -35,9 +35,9 @@ export default function AuthProvider({children}: ComponentProps) {
         setLoading(true);
         try {
             const profile = await getProfile();
-            const org = await findByIdAPI(profile.resident.org_id);
+            const org = await findByIdAPI(profile.user.resident.org_id);
             setOrgManage(org.id)
-            console.log(org);
+            console.log(profile);
             setUser(profile);
             setComplex(org.complex_id);
         } catch {
