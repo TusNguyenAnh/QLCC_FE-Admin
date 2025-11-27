@@ -35,7 +35,7 @@ export default function Header() {
     const pathToLabelMap: { [key: string]: string } = {
         authori: 'Quản lý truy cập',
         org: 'Quản lý cơ cấu tổ chức',
-
+        complex: 'Quản lý chung cư',
     };
 
     // Hàm tạo mảng breadcrumb từ URL
