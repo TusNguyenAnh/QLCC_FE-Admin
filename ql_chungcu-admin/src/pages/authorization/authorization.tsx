@@ -5,7 +5,6 @@ import UserManagement from "@/pages/authorization/user/user-management.tsx";
 import PermissionManagement from "@/pages/authorization/permission/permission-management.tsx";
 
 function Authorization() {
-
     return (
         <div className="flex-1 overflow-hidden">
             <Tabs defaultValue="role" className="h-full flex flex-col">

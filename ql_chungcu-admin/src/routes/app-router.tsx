@@ -5,25 +5,41 @@ import {Login} from "../pages/authentication/login.tsx";
 import Authorization from "@/pages/authorization/authorization.tsx";
 import {ProtectedRoute} from "@/layouts/protected-route.tsx";
 import Organization from "@/pages/organization/organization.tsx";
+import Complex from "@/pages/complex/complex.tsx";
 
 
 const AppRouter: React.FC = () => (
     <Routes>
-        <Route path="/" element={
+        <Route path="/page/dashboard" element={
             <MainLayout content={undefined}>
             </MainLayout>
         }/>
 
-        <Route path="/page/org" element={
-            <ProtectedRoute>
-                <MainLayout content={<Organization/>}>
+        {/*<Route path="/page/org" element={*/}
+        {/*    <ProtectedRoute>*/}
+        {/*        <MainLayout content={<Organization/>}>*/}
+        {/*        </MainLayout>*/}
+        {/*    </ProtectedRoute>*/}
+        {/*}/>*/}
+
+        <Route path="/page/authori" element={
+            <ProtectedRoute
+                permissions={["view:permission", "assign:permission", "manage:role", "view:role", "assign:role", "view:user", "manage:user"]}
+                requireAll={true}
+            >
+                <MainLayout content={<Authorization/>}>
                 </MainLayout>
             </ProtectedRoute>
         }/>
 
-        <Route path="/page/authori" element={
-            <MainLayout content={<Authorization/>}>
-            </MainLayout>
+        <Route path="/page/complex" element={
+            <ProtectedRoute
+                permissions={["view:complex", "manage:complex", "review:complex"]}
+                requireAll={true}
+            >
+                <MainLayout content={<Complex/>}>
+                </MainLayout>
+            </ProtectedRoute>
         }/>
 
         <Route path="/login" element={
