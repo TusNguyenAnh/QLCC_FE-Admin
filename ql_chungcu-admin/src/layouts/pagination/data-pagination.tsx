@@ -30,7 +30,11 @@ export function DataPagination({
                                    perPageOptions = [1, 5, 10, 25, 50, 100],
                                    className = "",
                                }: DataPaginationProps) {
-    const {current_page, last_page, total, per_page} = meta;
+    // Convert 0-indexed page to 1-indexed for UI display
+    const current_page = meta.page + 1;
+    const last_page = meta.totalPages;
+    const total = meta.totalElements;
+    const per_page = meta.size;
 
     // Tạo danh sách số trang để hiển thị
     const generatePageNumbers = () => {

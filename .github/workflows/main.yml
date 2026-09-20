@@ -38,15 +38,15 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: 22
           script: |
-            cd /home/atus/qlcc_php/deploy
+            cd /home/atus/qlcc_java/deploy
             OLD_IMAGE_FE_ADMIN=$(docker inspect qlcc_fe_admin --format='{{.Config.Image}}' 2>/dev/null || true)
             echo "Old image: $OLD_IMAGE_FE_ADMIN"
 
             docker stop qlcc_fe_admin || true
             docker rm qlcc_fe_admin || true
-            FRONTEND_ADMIN_TAG=${{ github.sha }} docker compose -f docker-compose-qlcc-php.yml pull qlcc-frontend-admin
-            FRONTEND_ADMIN_TAG=${{ github.sha }} docker compose -f docker-compose-qlcc-php.yml up -d qlcc-frontend-admin
-            docker compose -f docker-compose-qlcc-php.yml restart nginx
+            FRONTEND_ADMIN_TAG=${{ github.sha }} docker compose -f docker-compose-qlcc-java.yml pull qlcc-frontend-admin
+            FRONTEND_ADMIN_TAG=${{ github.sha }} docker compose -f docker-compose-qlcc-java.yml up -d qlcc-frontend-admin
+            docker compose -f docker-compose-qlcc-java.yml restart nginx 
             if [ -n "$OLD_IMAGE_FE_ADMIN" ]; then docker image rm "$OLD_IMAGE_FE_ADMIN" || true; fi
             docker ps
 

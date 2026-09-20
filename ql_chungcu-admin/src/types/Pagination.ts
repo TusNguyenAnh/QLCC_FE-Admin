@@ -1,20 +1,20 @@
 export type PaginationMeta = {
-  current_page: number;
-  last_page: number;
-  per_page: number;
-  total: number;
+    page: number; // 0-indexed
+    size: number;
+    totalElements: number;
+    totalPages: number;
 };
 
-export type PaginationLinks = {
-  first: string | null;
-  last: string | null;
-  prev: string | null;
-  next: string | null;
+export type PaginatedResult<T> = {
+    data: T[];
+    page: number; // 0-indexed
+    size: number;
+    totalElements: number;
+    totalPages: number;
 };
 
 export type PaginatedResponse<T> = {
-  message: string;
-  data: T[];
-  meta: PaginationMeta;
-  links: PaginationLinks;
+    code: number;
+    message: string;
+    result: PaginatedResult<T>;
 };

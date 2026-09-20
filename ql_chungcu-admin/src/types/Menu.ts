@@ -37,15 +37,15 @@ export const menuItems: MenuItem[] = [
     //   child: [],
     //   permissions: ["view:organization"],
     // },
-    {
-        id: 2,
-        title: "Quản lý truy cập",
-        url: "/page/authori",
-        icon: UserCog,
-        child: [],
-        permissions: ["view:user", "view:role", "view:permission"],
-        requireAll: false,
-    },
+    // {
+    //     id: 2,
+    //     title: "Quản lý truy cập",
+    //     url: "/page/authori",
+    //     icon: UserCog,
+    //     child: [],
+    //     permissions: ["view:user", "view:role", "view:permission"],
+    //     requireAll: false,
+    // },
 
     {
         id: 3,

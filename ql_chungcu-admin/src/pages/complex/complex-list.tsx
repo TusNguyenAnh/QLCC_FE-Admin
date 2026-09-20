@@ -260,7 +260,7 @@ export default function ComplexList({
                     checked={selectedIds.includes(request.id)}
                     onCheckedChange={() => toggleSelectOne(request.id)}
                     onClick={(e) => e.stopPropagation()}
-                    aria-label={`Chọn ${request.complex_name}`}
+                    aria-label={`Chọn ${request.complexName}`}
                   />
                 </div>
               )}
@@ -274,7 +274,7 @@ export default function ComplexList({
                     <div className="flex items-center gap-2 mb-1">
                       <Building2 className="h-4 w-4 text-blue-600" />
                       <h3 className="text-base font-semibold text-slate-900">
-                        {request.complex_name}
+                        {request.complexName}
                       </h3>
                     </div>
                     <div className="flex items-center gap-2 text-xs text-slate-600">
@@ -298,26 +298,26 @@ export default function ComplexList({
                   <div className="flex items-center gap-1">
                     <Building className="h-3 w-3" />
                     <span>
-                      <strong>{request.total_building}</strong> tòa
+                      <strong>{request.totalBuilding}</strong> tòa
                     </span>
                   </div>
                   <div className="flex items-center gap-1">
                     <Building2 className="h-3 w-3" />
                     <span>
-                      <strong>{request.total_apartment}</strong> căn
+                      <strong>{request.totalApartment}</strong> căn
                     </span>
                   </div>
                   <div className="flex items-center gap-1">
                     <User className="h-3 w-3" />
-                    <span>{request.name_contact}</span>
+                    <span>{request.nameContact}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <Phone className="h-3 w-3" />
-                    <span>{request.phone_contact}</span>
+                    <span>{request.phoneContact}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <Mail className="h-3 w-3" />
-                    <span className="truncate">{request.email_contact}</span>
+                    <span className="truncate">{request.emailContact}</span>
                   </div>
                 </div>
               </div>
@@ -356,7 +356,7 @@ export default function ComplexList({
             <DialogTitle>Xác nhận phê duyệt</DialogTitle>
             <DialogDescription>
               Bạn có chắc chắn muốn phê duyệt chung cư{" "}
-              <strong>{selectedComplex?.complex_name}</strong> không?
+              <strong>{selectedComplex?.complexName}</strong> không?
             </DialogDescription>
           </DialogHeader>
 
@@ -389,13 +389,13 @@ export default function ComplexList({
             <DialogTitle>Xác nhận từ chối</DialogTitle>
             <DialogDescription>
               Vui lòng nhập lý do từ chối chung cư{" "}
-              <strong>{selectedComplex?.complex_name}</strong>
+              <strong>{selectedComplex?.complexName}</strong>
             </DialogDescription>
           </DialogHeader>
 
-          <div className="space-y-4 py-4">
+          <div className="space-y-4">
             <div>
-              <Label htmlFor="reject-note">
+              <Label htmlFor="reject-note" className="mb-2">
                 Lý do từ chối <span className="text-red-500">*</span>
               </Label>
               <Textarea

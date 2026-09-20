@@ -3,8 +3,8 @@ import type {Resident} from "./Resident";
 export interface User {
     id: string;
     username: string;
-    complex_id: string;
-    res_id: string;
+    complexId: string;
+    resId: string;
     status: number;
     email_verified_at: string | null;
     created_at: string | null;
@@ -16,10 +16,11 @@ export interface User {
 export interface ProfileResponse {
     user: User;
     permissions: string[];
+    orgId: string;
 }
 
 export interface LoginResponse {
     message: string;
-    access_token: string;
-    refresh_token: string;
+    accessToken: string;
+    refreshToken: string;
 }

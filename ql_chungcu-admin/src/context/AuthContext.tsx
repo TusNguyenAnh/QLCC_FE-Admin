@@ -1,8 +1,8 @@
-import React, { createContext, useState, useEffect } from "react";
-import { Loader2 } from "lucide-react";
-import { getProfile } from "@/apis/authAPI.ts";
-import { findByIdAPI } from "@/apis/orgAPI.ts";
-import { getPermissions, getToken } from "@/utils/auth.ts";
+import React, {createContext, useState, useEffect} from "react";
+import {Loader2} from "lucide-react";
+import {getProfile} from "@/apis/authAPI.ts";
+import {findByIdAPI} from "@/apis/orgAPI.ts";
+import {getPermissions, getToken} from "@/utils/auth.ts";
 
 interface AuthContextType {
     user: any | null;
@@ -35,12 +35,12 @@ export const AuthContext = createContext<AuthContextType>(
     {} as AuthContextType
 );
 
-export default function AuthProvider({ children }: ComponentProps) {
+export default function AuthProvider({children}: ComponentProps) {
     const [user, setUser] = useState<any | null>(null);
     const [complex, setComplex] = useState<any | null>(null);
     const [orgManage, setOrgManage] = useState<any | null>(null);
     const [permissions, setPermissions] = useState<string[]>([]);
-    const [loading, setLoading] = useState<boolean>(true); // ✅ Bắt đầu với true để check token
+    const [loading, setLoading] = useState<boolean>(true);
 
     const checkPermission = React.useCallback(
         (permission: string) => permissions.includes(permission),
@@ -69,12 +69,12 @@ export default function AuthProvider({ children }: ComponentProps) {
         setLoading(true);
         try {
             const profile = await getProfile();
-            if (profile.user.resident) {
-                const org = await findByIdAPI(profile.user.resident.org_id);
+            if (profile.orgId) {
+                const org = await findByIdAPI(profile.orgId);
                 setOrgManage(org.id);
             }
             setUser(profile);
-            setComplex(profile.user.complex_id);
+            setComplex(profile.user.complexId);
 
             // Load permissions from token
             const userPermissions = getPermissions();
@@ -89,12 +89,11 @@ export default function AuthProvider({ children }: ComponentProps) {
     useEffect(() => {
         const token = getToken();
         if (token) {
-            fetchUser(); // ✅ Chỉ fetch user nếu có token
+            fetchUser(); //  Chỉ fetch user nếu có token
         } else {
-            setLoading(false); // ✅ Không có token thì set loading = false
+            setLoading(false); //  Không có token thì set loading = false
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []); // ✅ Chỉ chạy 1 lần khi mount
+    }, []); // Chỉ chạy 1 lần khi mount
 
     // Memoize context value để tránh re-render không cần thiết
     const contextValue = React.useMemo(
@@ -133,7 +132,7 @@ export default function AuthProvider({ children }: ComponentProps) {
         <AuthContext.Provider value={contextValue}>
             {loading ? (
                 <div className="absolute inset-0 z-10 bg-white/50 flex items-center justify-center">
-                    <Loader2 className="h-6 w-6 animate-spin text-primary mr-1" />
+                    <Loader2 className="h-6 w-6 animate-spin text-primary mr-1"/>
                     Loading...
                 </div>
             ) : (

@@ -25,7 +25,9 @@ import {AuthContext} from "@/context/AuthContext.tsx";
 // Định nghĩa schema Zod
 const schema = z.object({
     username: z.string().min(1, "Tên đăng nhập không được để trống"),
-    password: z.string().optional(),
+    passwordRaw: z.string().optional(),
+    complexId: z.string().optional(),
+    orgId: z.string().optional(),
 });
 
 export type LoginFormSchema = z.infer<typeof schema>;
@@ -39,7 +41,9 @@ export function Login() {
         resolver: zodResolver(schema),
         defaultValues: {
             username: "",
-            password: "",
+            passwordRaw: "",
+            complexId: "",
+            orgId: "",
         },
     });
 
@@ -54,14 +58,14 @@ export function Login() {
             clearAuth();
 
             const loginRes = await login(data);
-            setToken(loginRes.access_token);
+            setToken(loginRes.accessToken);
             const userInfo = await getProfile();
-            if (userInfo.user.resident) {
-                const org = await findByIdAPI(userInfo.user.resident.org_id);
+            if (userInfo.orgId) {
+                const org = await findByIdAPI(userInfo.orgId);
                 setOrgManage(org.id);
             }
             setUser(userInfo);
-            setComplex(userInfo.user.complex_id);
+            setComplex(userInfo.user.complexId);
 
             // Load permissions from token after login
             const userPermissions = getPermissions();
@@ -131,7 +135,7 @@ export function Login() {
                             </div>
                             <div className="grid gap-2">
                                 <div className="flex items-center">
-                                    <Label htmlFor="password">Password</Label>
+                                    <Label htmlFor="passwordRaw">Password</Label>
                                     <a
                                         href="#"
                                         tabIndex={-1}
@@ -141,14 +145,14 @@ export function Login() {
                                     </a>
                                 </div>
                                 <Input
-                                    id="password"
-                                    {...register("password")}
+                                    id="passwordRaw"
+                                    {...register("passwordRaw")}
                                     type="password"
                                     autoComplete="current-password"
                                 />
-                                {errors.password && (
+                                {errors.passwordRaw && (
                                     <p className="text-sm text-red-500">
-                                        {errors.password.message}
+                                        {errors.passwordRaw.message}
                                     </p>
                                 )}
                             </div>
