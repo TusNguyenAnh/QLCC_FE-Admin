@@ -34,7 +34,7 @@ request.interceptors.request.use(
 request.interceptors.response.use(
     (response) => {
         if (response && response.data) {
-            return response.data.result;
+            return response.data;
         }
         return response;
     },
