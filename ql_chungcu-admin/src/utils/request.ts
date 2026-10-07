@@ -1,11 +1,11 @@
 // src/lib/request.ts
 import axios from 'axios';
 import {toast} from "sonner";
-// const version = 'v1';
+const version = 'v1';
 
 const request = axios.create({
     // baseURL: 'http://localhost:8000/api',
-    baseURL: 'https://api.bqtsoft.vn/api',
+    baseURL: 'https://api.bqtsoft.vn/api/' + version,
     // baseURL: 'http://localhost:8080/api/' + version,
     // baseURL: 'http://api.mbs.id.vn:5173/api/' + version,
     headers: {
@@ -34,7 +34,7 @@ request.interceptors.request.use(
 request.interceptors.response.use(
     (response) => {
         if (response && response.data) {
-            return response.data;
+            return response.data.result;
         }
         return response;
     },

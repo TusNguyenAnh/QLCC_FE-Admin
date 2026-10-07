@@ -8,7 +8,7 @@ export const columnLabelsOrg: Record<string, string> = {
 export const columnLabelsRes: Record<string, string> = {
     res_id:"Mã cư dân",
     cccd: "Số căn cước",
-    fullname: "Cư dân",
+    fullname: "Họ tên",
     email: "Email",
     phone_number: "Số điện thoại",
     birthday: "Ngày sinh",
